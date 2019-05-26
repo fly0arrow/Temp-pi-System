@@ -1,0 +1,26 @@
+% Channel ID to read data from 
+readChannelID = 781357; 
+% Humidity Field ID 
+temperatureFieldID = 2;
+
+% Channel Read API Key 
+% If your channel is private, then enter the read API Key between the '' below: 
+readAPIKey = 'R727J3TQ2V6AJ8AX';
+iftttURL= 'https://maker.ifttt.com/trigger/Temp/with/key/cOfLfSvNz2jBWf5luyrqpB';
+
+temp = thingSpeakRead(readChannelID,'Fields',temperatureFieldID,'NumMinutes',5,'ReadKey',readAPIKey); 
+
+% Calculate the average humidity 
+display(temp,'Temperature'); 
+webwrite(iftttURL,'value2',temp);  
+
+fprintf(['Note: To write data to another channel, assign the write channel ID \n',... 
+    'and API Key to ''writeChannelID'' and  ''writeAPIKey'' variables. Also \n',...
+    'uncomment the line of code containing ''thingSpeakWrite'' \n',... 
+    '(remove ''%%'' sign at the beginning of the line.)']); 
+     
+
+% Replace the [] with channel ID to write data to: 
+writeChannelID = 781357; 
+% Enter the Write API Key between the '' below: 
+writeAPIKey = 'B7VP5XYCWOX2SWOJ'; 
